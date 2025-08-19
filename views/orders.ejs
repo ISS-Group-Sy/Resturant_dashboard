@@ -100,6 +100,19 @@
             font-size: 1.5rem;
             color: #e67300;
         }
+        .refresh-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            margin-left: 8px;
+            margin-right: 1%;
+            color: #d3710f;
+            
+        }
+        .refresh-btn:hover {
+            color: #b65f08;
+        }
     </style>
 </head>
 <body>
@@ -181,11 +194,16 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">All Orders</h2>
-                    <div class="toolbar">
+                    <div class="toolbar" style="display: flex; align-items: center; gap: 8px;">
+                        <button id="loadar_orders" class="refresh-btn" title="Refresh Orders" onclick="refreshOrders()">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
                         <div class="search-box">
                             <i class="fas fa-search"></i>
                             <input type="text" class="form-control" placeholder="Search orders..." onkeyup="searchOrders(this.value)">
                         </div>
+                        <!-- Refresh Button -->
+                        
                         <select class="form-control" style="width: auto;" onchange="filterByStatus(this.value)">
                             <option value="">All Status</option>
                             <option value="pending">Pending</option>

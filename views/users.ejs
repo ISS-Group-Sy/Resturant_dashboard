@@ -96,6 +96,19 @@
       font-size: 1.5rem;
       color: #e67300;
     }
+      .refresh-btn {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            margin-left: 8px;
+            margin-right: -1%;
+            color: #d3710f;
+            
+        }
+        .refresh-btn:hover {
+            color: #b65f08;
+        }
   </style>
 </head>
 <body>
@@ -200,6 +213,9 @@
         <div class="card-header">
           <h2 class="card-title">All Users</h2>
           <div class="toolbar">
+          <button id="loadar_orders" class="refresh-btn" title="Refresh Orders" onclick="refreshOrders()">
+            <i class="fas fa-sync-alt"></i>
+          </button>
             <div class="search-box">
               <i class="fas fa-search"></i>
               <input type="text" class="form-control" placeholder="Search users..." onkeyup="searchUsers(this.value)">

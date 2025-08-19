@@ -59,7 +59,6 @@ module.exports.post_login = async (req, res, next) => {
 module.exports.createUser = async (req, res) => {
   try {
     const { name, email, password, permissions , role} = req.body;
-    console.log(req.body)
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Name, email and password are required" });
     }
@@ -108,9 +107,7 @@ module.exports.current_user = async (req, res) => {
 
 module.exports.getUsers = async (req, res, next) => {
   try {
-    const currentUser = await User.findById(req.user.id);
-
-    const users = await User.find().select('-hashPassword -__v');
+    const users = await User.find().sort({ createdAt: -1 }).select('-hashPassword -__v');
     res.json({ users });
   } catch (error) {
     next(error);

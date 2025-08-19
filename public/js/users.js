@@ -365,7 +365,31 @@ function showNotification(message, type = "success") {
   setTimeout(() => { if (notification.parentNode) notification.remove(); }, 4000);
 }
 
+
+async function refreshOrders() {
+    const loaderButton = document.getElementById('loadar_orders');
+    if (loaderButton) {
+        loaderButton.disabled = true; 
+        loaderButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`; 
+    }
+
+    try {
+        await fetchUsers();
+        showNotification('🔄 Orders refreshed successfully!', 'success');
+    } catch (err) {
+        showNotification(`❌ Failed to refresh orders: ${err.message}`, 'error');
+        console.error(err);
+    } finally {
+        if (loaderButton) {
+            loaderButton.disabled = false;
+            loaderButton.innerHTML = `<i class="fas fa-sync-alt"></i>`; 
+        }
+    }
+}
+
+
 // Global functions
+window.refreshOrders = refreshOrders;
 window.editUser = editUser;
 window.deleteUser = deleteUser;
 window.changePage = changePage;

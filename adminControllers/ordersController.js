@@ -4,26 +4,25 @@ const User = require('../models/user');
 
 module.exports.Orders_get = async (req, res) => {
   try {
-    // جلب كل الطلبات مع بيانات المستخدم صاحب الطلب
+    
     const orders = await Order.find()
-      .sort({ createdAt: -1 }) // ترتيب تنازلي حسب تاريخ الإنشاء (الأحدث أولاً)
-      .populate('user_id', 'name') // جلب اسم وإيميل المستخدم فقط
+      .sort({ createdAt: -1 }) 
+      .populate('user_id', 'name') 
 
-    // جلب عناصر كل طلب وربطها بالـ menu items
     const ordersWithItems = await Promise.all(
       orders.map(async (order) => {
         const items = await OrderItems.find({ order_id: order._id })
-          .populate('menu_item_id', 'name price'); // جلب اسم وسعر كل عنصر من قائمة الطعام
+          .populate('menu_item_id', 'name price');
 
         return {
           _id: order._id,
-          user: order.user_id, // يحتوي على الاسم والبريد
+          user: order.user_id, 
           total_price: order.total_price,
           status: order.status,
           createdAt: order.createdAt,
           items: items.map(item => ({
             _id: item._id,
-            menu_item: item.menu_item_id, // يحتوي على الاسم والسعر
+            menu_item: item.menu_item_id, 
             quantity: item.quantity,
             unit_price: item.unit_price
           }))
