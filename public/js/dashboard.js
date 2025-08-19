@@ -37,7 +37,6 @@ async function loadDashboardStats() {
     }
 
     const result = await res.json();
-
     if (res.ok) {
       // عرض البيانات في الواجهة
       displayDashboardStats(result);
@@ -56,7 +55,7 @@ function displayDashboardStats(data) {
   const totalMenuItemsEl = document.getElementById("totalMenuItems");
   const totalUsersEl = document.getElementById("totalUsers");
 
-  if (totalOrdersEl) totalOrdersEl.textContent = data.totalOrders ?? 0;
+  if (totalOrdersEl) totalOrdersEl.textContent = data.totalOrdersToday ?? 0;
   if (totalRevenueEl) totalRevenueEl.textContent = `$${(data.totalRevenue ?? 0).toFixed(2)}`;
   if (totalMenuItemsEl) totalMenuItemsEl.textContent = data.totalMenuItems ?? 0;
   if (totalUsersEl) totalUsersEl.textContent = data.totalCustomers ?? 0; 
