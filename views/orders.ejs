@@ -254,5 +254,11 @@
     <script type="module" src="/js/orders.js"></script>
     <script src="/js/isLoggedIn.js"></script>
     <script src="/js/auth.js"></script>
+     <script>
+      const userName = localStorage.getItem("userName");
+      if (userName) {
+        document.getElementById("userInitials").textContent = userName.charAt(0).toUpperCase();
+      }
+    </script>
 </body>
 </html>

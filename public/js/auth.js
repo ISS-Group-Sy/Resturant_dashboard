@@ -25,7 +25,6 @@ async function handleLogin(event) {
     });
 
     const result = await response.json();
-
     if (!response.ok) {
       throw new Error(result.message || "Login failed");
     }
@@ -33,7 +32,8 @@ async function handleLogin(event) {
     // Backend يرسل فقط accessToken و رسالة، بدون بيانات المستخدم
     localStorage.setItem('accessToken', result.accessToken);
     localStorage.setItem('permissions', JSON.stringify(result.permissions));
-
+    localStorage.setItem('userName', result.name);
+    
     showNotification("Successful login! Redirecting...", "success");
 
     setTimeout(() => {

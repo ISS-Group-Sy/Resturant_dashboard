@@ -247,5 +247,12 @@
     <script src="/js/isLoggedIn.js"></script>
     <script src="/js/auth.js"></script>
     <script type="module" src="/js/dashboard.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+      const userName = localStorage.getItem("userName");
+      if (userName) {
+        document.getElementById("userInitials").textContent = userName.charAt(0).toUpperCase();
+      }
+    </script>
 </body>
 </html>

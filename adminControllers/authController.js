@@ -49,7 +49,8 @@ module.exports.post_login = async (req, res, next) => {
     res.status(201).json({ 
       message: "Successful login", 
       accessToken,
-      permissions: foundUser.permissions || ['/admin/dashboard'], // تأكد وجود صلاحيات، وإلا افتراضيًا
+      permissions: foundUser.permissions || ['/admin/dashboard'], 
+      name: foundUser.name
     });
   } catch (err) {
     next(err);
