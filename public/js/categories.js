@@ -168,7 +168,7 @@ async function saveCategory(event) {
   event.preventDefault();
 
   const saveBtn = document.getElementById("saveCategoryBtn");
-  if (saveBtn.disabled) return; // Prevent double submission
+  if (saveBtn.disabled) return; 
   saveBtn.disabled = true;
   saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
 

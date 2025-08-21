@@ -32,7 +32,6 @@ const checkPermission = async (req, res, next) => {
       return res.status(403).send("You do not have permission to access this page.");
     }
 
-    // ✅ إذا كلشي تمام
     next();
 
   } catch (error) {

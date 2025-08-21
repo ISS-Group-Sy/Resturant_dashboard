@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!response.ok) {
         showNotification(`❌ Error: ${data.message}`, 'error');
-        submitButton.disabled = false; // Re-enable the submit button
+        submitButton.disabled = false; 
         return;
       }
 
@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
       showNotification(`❌ Something went wrong while ${currentEditingItem ? 'updating' : 'submitting'} the form.`, 'error');
       console.error(err);
     } finally {
-      submitButton.disabled = false; // Re-enable the submit button in case of error or success
+      submitButton.disabled = false; 
     }
   });
 });

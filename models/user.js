@@ -23,8 +23,8 @@ const userSchema = new mongoose.Schema({
         minlength: [8, 'Minimum password length is 8 characters'],
     },
     permissions: {
-        type: [String], // كل عنصر رابط صفحة مسموح له بالدخول
-        default: ['/admin/dashboard'], // صلاحية افتراضية على صفحة dashboard
+        type: [String], 
+        default: ['/admin/dashboard'], 
     },
     isVerified: {
         type: Boolean,

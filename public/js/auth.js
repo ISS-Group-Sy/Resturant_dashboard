@@ -29,7 +29,6 @@ async function handleLogin(event) {
       throw new Error(result.message || "Login failed");
     }
 
-    // Backend يرسل فقط accessToken و رسالة، بدون بيانات المستخدم
     localStorage.setItem('accessToken', result.accessToken);
     localStorage.setItem('permissions', JSON.stringify(result.permissions));
     localStorage.setItem('userName', result.name);
@@ -52,13 +51,13 @@ async function handleLogout() {
   try {
     const token = localStorage.getItem('accessToken');
     if (token) {
-      // إرسال طلب تسجيل الخروج إلى السيرفر
+
       const response = await fetch('/admin/logout', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
         },
-        credentials: 'include', // إرسال الكوكيز (refreshToken)
+        credentials: 'include', 
       });
 
       if (!response.ok) {
@@ -70,13 +69,12 @@ async function handleLogout() {
     console.error('Logout failed:', error);
     showNotification(`Logout failed: ${error.message}. Clearing local session.`, 'error');
   } finally {
-    // حذف الـ access token من localStorage
+
     localStorage.removeItem('accessToken');
     localStorage.removeItem('permissions')
-    // عرض إشعار النجاح
+  
     showNotification('Logged out successfully', 'success');
 
-    // إعادة التوجيه إلى صفحة الدخول
     setTimeout(() => {
       window.location.href = '/admin/login';
     }, 1000);

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     filterSidebar();
-    await loadDashboardStats();  // 👈 هون نستدعي دالة جديدة لجلب الإحصائيات
+    await loadDashboardStats(); 
   } catch (err) {
     showNotification(`❌ Failed to load dashboard data: ${err.message}`, 'error');
     console.error(err);
@@ -23,7 +23,6 @@ async function loadDashboardStats() {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
-    // إذا التوكن منتهي جرب refresh
     if (res.status === 401 || res.status === 403) {
       const refreshed = await refreshAccessToken();
       if (!refreshed) {
@@ -38,7 +37,6 @@ async function loadDashboardStats() {
 
     const result = await res.json();
     if (res.ok) {
-      // عرض البيانات في الواجهة
       displayDashboardStats(result);
     } else {
       showNotification(result.message || "Failed to fetch stats", "error");
